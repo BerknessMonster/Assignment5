@@ -5,31 +5,31 @@ import java.util.Scanner;
 public class UserClientChoices {
 	private static Scanner choicesScanner = new Scanner(System.in);
 
-	private static String choicesUsernameUpdate() {
+	public static String choicesUsernameUpdate() {
 		System.out.println("Which user would you like to login as? (Type in a valid username)");
 		String usernameUpdate = choicesScanner.nextLine();
 		return usernameUpdate;
 	}
 
-	private static void choicesUpdateName(User loggedInUser) {
+	public static void choicesUpdateName(User loggedInUser) {
 		System.out.println("Please type in your new name: ");
 		String name = choicesScanner.nextLine();
 		loggedInUser.setName(name);
 	}
 
-	private static void choicesUpdatePassword(User loggedInUser) {
+	public static void choicesUpdatePassword(User loggedInUser) {
 		System.out.println("Please type in your new password: ");
 		String password = choicesScanner.nextLine();
 		loggedInUser.setPassword(password);
 	}
 
-	private static void choicesUpdateUsername(User loggedInUser) {
+	public static void choicesUpdateUsername(User loggedInUser) {
 		System.out.println("Please type in your new username: ");
 		String username = choicesScanner.nextLine();
 		loggedInUser.setUsername(username);
 	}
 
-	private static int caseOptions(User loggedInUser) {
+	public static int choiceOptions(User loggedInUser) {
 		System.out.println("................");
 		System.out.println("Please choose from the following options:");
 		if (loggedInUser instanceof SuperUser) {
@@ -39,7 +39,9 @@ public class UserClientChoices {
 		System.out.println("(2) Update password");
 		System.out.println("(3) Update name");
 		System.out.println("(4) Exit");
-		String option = choicesScanner.nextLine();
+		Integer option = choicesScanner.nextInt();
+		
+		return option;
 
 	}
 

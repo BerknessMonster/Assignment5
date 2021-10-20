@@ -17,9 +17,10 @@ public class FileReadAndWrite {
 		try {
 			reader = new BufferedReader(new FileReader("users.txt"));
 
+			String dataLine = null;
 			String line = null;
 			int i = 0;
-			while ((line = reader.dataLine()) != null) {
+			while ((line = reader.readLine()) != null) {
 				String[] values = line.split(", ");
 				if ("super_user".equals(values[3])) {
 					users[i + 1] = new SuperUser(values[0], values[1], values[2]);
@@ -44,10 +45,18 @@ public class FileReadAndWrite {
 		for (User user : users) {
 			writer.write(userService.getCsvOutput(user));
 		}
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}finally
 	{
 		if (writer != null) {
-			writer.close();
+			try {
+				writer.close();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
 	}
 }

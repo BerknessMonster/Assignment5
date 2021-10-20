@@ -8,4 +8,5 @@ public class NormalUser extends User {
 		this.setName(name);
 	
 
+	}
 }
