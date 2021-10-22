@@ -1,7 +1,9 @@
 
 public class UserService {
+	FileReadAndWrite fileReadAndWrite = new FileReadAndWrite(User[] users);
+	
 
-	public User getValidUser(String username, String password) {
+	public User getValidUser(String username, String password, User[] users) {
 		for (User user : Main.users) {
 			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
 				return user;
@@ -11,8 +13,9 @@ public class UserService {
 	}
 
 	public User getUserByUsername(String username) {
-		for (User user : Main.users) {
+		for (User user : fileReadAndWrite.users) {
 			if (user.getUsername().equalsIgnoreCase(username)) {
+				System.out.println(user);
 				return user;
 			}
 		}
