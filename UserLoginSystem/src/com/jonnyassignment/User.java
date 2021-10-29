@@ -1,4 +1,4 @@
-package com.jonny;
+package com.jonnyassignment;
 
 public class User {
 private String username;
