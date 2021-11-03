@@ -1,6 +1,6 @@
 package com.jonny;
 
-//public class UserService {
+	public class UserService {
 //	public User getValidUser(String username, String password) {
 //		for (User user : Application.users) {
 //			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
