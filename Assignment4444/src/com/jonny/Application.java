@@ -10,27 +10,14 @@ public class Application {
 
 	public static void main(String[] args) throws IOException {
 		User[] users = new User[20];
-		User user = new user();
+		User user = new User();
 		PopulateUsers populateUsers = new PopulateUsers();
-		Scanner scanner = new Scanner(System.in);
-		String userInputEmail;
-		String userInputPassword;
-		///////////INSTANTIATIONS///////////////////
-		populateUsers.PopulateUsersFromFile(users);
+		UserService userService = new UserService();
 		
-		
-		
-		System.out.println("Welcome");
-		System.out.println("Enter your email");
-		userInputEmail = scanner.next();
-		System.out.println("Enter your password");
-		userInputPassword = scanner.next();
-		if (userInputEmail.equalsIgnoreCase(user.getUsername())) {
-			System.out.println("Welcome" + user.getName());
-		}
-		
-		
-		
+		/////////// INSTANTIATIONS///////////////////
+		populateUsers.populateUsersFromFile(users, user, userService);
+		userService.inputsAndComparingUserByUsernameAndPassword(user);
+
 		
 	}
 }
