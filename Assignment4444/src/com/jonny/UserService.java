@@ -8,10 +8,7 @@ public class UserService {
 		String userInputEmail;
 		String userInputPassword;
 		int invalidLoginAttempts = 0;
-		System.out.println("Enter your email");
-		userInputEmail = scanner.next();
-		System.out.println("Enter your password");
-		userInputPassword = scanner.next();
+		String loggedInUser = null;
 		if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
 			System.out.println("Welcome " + user.getName());
 		} else {
@@ -19,6 +16,15 @@ public class UserService {
 		invalidLoginAttempts++;
 		}
 
+	}
+
+	private void While(boolean b) {
+		 while (loggedInUser == null && invalidLoginAttempts <= 5) {
+			System.out.println("Enter your email");
+			userInputEmail = scanner.next();
+			System.out.println("Enter your password");
+			userInputPassword = scanner.next();
+		 }	
 	}
 
 }
