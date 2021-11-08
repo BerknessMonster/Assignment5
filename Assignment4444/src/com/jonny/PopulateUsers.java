@@ -20,9 +20,10 @@ public class PopulateUsers {
 				user.setPassword(usersSplit[1].trim());
 				user.setRole(usersSplit[3].trim());
 				users[i] = user;
-				userService.inputsAndComparingUserByUsernameAndPassword(user);
 				i++;
 			}
+			User currentUser = userService.inputsAndComparingUserByUsernameAndPassword(users); 
+
 		} catch (FileNotFoundException e) {
 			System.out.println("file not read");
 			e.printStackTrace();

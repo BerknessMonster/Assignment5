@@ -13,11 +13,10 @@ public class Application {
 		User user = new User();
 		PopulateUsers populateUsers = new PopulateUsers();
 		UserService userService = new UserService();
-		
+
 		/////////// INSTANTIATIONS///////////////////
 		populateUsers.populateUsersFromFile(users, user, userService);
-		userService.inputsAndComparingUserByUsernameAndPassword(user);
+		userService.inputsAndComparingUserByUsernameAndPassword(users);
 
-		
 	}
 }
