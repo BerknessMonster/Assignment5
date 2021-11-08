@@ -8,27 +8,27 @@ public class UserService {
 		String userInputEmail;
 		String userInputPassword;
 
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 6; i++) {
 			if (i == 5) {
 				System.out.println("Too many attempts, you are locked out.");
 				System.exit(i);
-			} else if (i < 6) {
+			} else {
 				System.out.println("Enter your email");
 				userInputEmail = scanner.next();
 				System.out.println("Enter your password");
 				userInputPassword = scanner.next();
 				for (User user : users) {
-					if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
+					if (userInputEmail.equalsIgnoreCase(user.getUsername())
+							&& userInputPassword.equals(user.getPassword())) {
 						System.out.println("Welcome " + user.getName());
-						return user;
-						User loggedInUser = new User();
-						user = loggedInUser;
 					}
-				} else {
-					System.out.println("Invalid login attempt please try again");
-				 
+					User loggedInUser = new User();
+					user = loggedInUser; 
+					return user;
+					//System.out.println(loggedInUser.toString());
 				}
 			}
+		}
 		return null;
 	}
 }
