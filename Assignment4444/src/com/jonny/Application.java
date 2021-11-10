@@ -9,14 +9,14 @@ import java.io.FileReader;
 public class Application {
 
 	public static void main(String[] args) throws IOException {
-		User[] users = new User[20];
-		User user = new User();
 		PopulateUsers populateUsers = new PopulateUsers();
 		UserService userService = new UserService();
-
 		/////////// INSTANTIATIONS///////////////////
-		populateUsers.populateUsersFromFile(users, user, userService);
+		User[] users = populateUsers.populateUsersFromFile();
+		for (User auser : users) {
+			System.out.println("hi" + auser);
+		}
+			
 		userService.inputsAndComparingUserByUsernameAndPassword(users);
-
 	}
 }

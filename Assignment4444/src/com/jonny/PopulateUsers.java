@@ -6,13 +6,16 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class PopulateUsers {
-	public User[] populateUsersFromFile(User[] users, User user, UserService userService) throws IOException {
+	public User[] populateUsersFromFile() throws IOException {
+		User[] users = new User[20];
+		UserService userService = new UserService();
 		String lineBeingRead = "";
 		BufferedReader bufferedReader = null;
 		try {
 			bufferedReader = new BufferedReader(new FileReader("users.txt"));
 			int i = 0;
 			while ((lineBeingRead = bufferedReader.readLine()) != null) {
+				User user = new User();
 				String[] usersSplit = new String[4];
 				usersSplit = lineBeingRead.split(",");
 				user.setName(usersSplit[2].trim());
@@ -21,8 +24,8 @@ public class PopulateUsers {
 				user.setRole(usersSplit[3].trim());
 				users[i] = user;
 				i++;
+
 			}
-		//System.out.println(user);
 			User currentUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
 
 		} catch (FileNotFoundException e) {

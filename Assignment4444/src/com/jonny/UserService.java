@@ -1,4 +1,5 @@
 package com.jonny;
+//////clean up args going in and out, be paranoid, make sure im consuming what im returning. Should I be passing everthing in, or not? Create at the last minute toi avoid multipole copies
 
 import java.util.Scanner;
 
@@ -18,14 +19,14 @@ public class UserService {
 				System.out.println("Enter your password");
 				userInputPassword = scanner.next();
 				for (User user : users) {
-					if (userInputEmail.equalsIgnoreCase(user.getUsername())
-							&& userInputPassword.equals(user.getPassword())) {
+					System.out.println(user);
+					if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
 						System.out.println("Welcome " + user.getName());
+						////not working above////Reads all users as last user.
 					}
 					User loggedInUser = new User();
 					user = loggedInUser; 
 					return user;
-					//System.out.println(loggedInUser.toString());
 				}
 			}
 		}
