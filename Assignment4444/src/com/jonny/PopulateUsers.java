@@ -24,9 +24,8 @@ public class PopulateUsers {
 				user.setRole(usersSplit[3].trim());
 				users[i] = user;
 				i++;
-
 			}
-			User currentUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
+			User currentUser = userService.inputsAndComparingUserByUsernameAndPassword(users, false);
 
 		} catch (FileNotFoundException e) {
 			System.out.println("file not read");
@@ -35,9 +34,9 @@ public class PopulateUsers {
 			if (bufferedReader != null)
 				bufferedReader.close();
 		}
-		for (User x : users) {
-			System.out.println(x);
-		}
+		// for (User x : users) {
+		// System.out.println(x);
+		// }
 		return users;
 	}
 

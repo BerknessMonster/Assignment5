@@ -12,11 +12,7 @@ public class Application {
 		PopulateUsers populateUsers = new PopulateUsers();
 		UserService userService = new UserService();
 		/////////// INSTANTIATIONS///////////////////
-		User[] users = populateUsers.populateUsersFromFile();
-		for (User auser : users) {
-			System.out.println("hi" + auser);
-		}
-			
-		userService.inputsAndComparingUserByUsernameAndPassword(users);
+		User[] users = populateUsers.populateUsersFromFile();		
+		userService.inputsAndComparingUserByUsernameAndPassword(users, false);
 	}
 }
