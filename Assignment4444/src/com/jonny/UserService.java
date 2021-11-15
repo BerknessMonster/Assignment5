@@ -3,17 +3,15 @@ package com.jonny;
 import java.util.Scanner;
 
 public class UserService {
-	public User inputsAndComparingUserByUsernameAndPassword(User[] users, boolean loggedInUser) {
-		Scanner scanner = new Scanner(System.in);
-		String userInputEmail;
-		String userInputPassword;
-		boolean loggedInUser = false;
+	private Scanner scanner = new Scanner(System.in);
 
-	final User findLoggedInUser(User[] users, Scanner scanner, boolean loggedInUser) {
+
+	public User inputsAndComparingUserByUsernameAndPassword(User[] users) {
+		boolean loggedInUser = false;
 		String userInputEmail = null;
 		String userInputPassword = null;
 		for (int i = 0; i < 6; i++) {
-			if (i == 5) {
+			if (i >= 5) {
 				System.out.println("Too many attempts, you are locked out.");
 				System.exit(i);
 			} else {
@@ -25,19 +23,20 @@ public class UserService {
 			for (User user : users) {
 				if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword()))
 					System.out.println("Welcome " + user.getName());
-				loggedInUser = true;
-				break;
-
+				return user;
+				
 			}
-			if (loggedInUser = false) {
+			if (loggedInUser == false) {
 				System.out.println("Please enter a valid username and password");
 			}
 
 		}
 		return null;
 
-//return findLoggedInUser(users, scanner, loggedInUser); {
-//	While (LoggedinUser == true && super user == true) {
+	}
+//   public void loggedInUserPrompts (User users, Scanner scanner, User loggedInUser) {
+//    int option = 0;	
+//	While (loggedinUser == true && super user == true && option != 4) {
 //		give super prompts..
 //		private void loginAsAnotherUser () {
 //		System.out.println("Who would you like to login as?");
@@ -55,10 +54,14 @@ public class UserService {
 //		optionExit () {
 //		System.exit
 //	}
-//
-//		else if (loggedInUser == true && super user = false) {
+//      
+//		While (loggedInUser == true && super user = false) {
 //		private void updateUsername () {
+//	System.out.println("Please type in your new username: ");
+//	String username = scanner.nextLine();
+//	loggedInUser.setUsername(username);
 //	}
+	
 //		private void updatePassword () {
 //	}
 //		private void updateName () {
@@ -67,5 +70,18 @@ public class UserService {
 //	}
 //}     
 //}
-	}
+//	//private int loggedInUserPromptOptions(User loggedInUser) {
+//	System.out.println("----------");
+//	System.out.println("Please choose from the following options:");
+//	if (loggedInUser instanceof SuperUser) {
+//	  System.out.println("(0) Log in as another user ");
+//	}
+//	System.out.println("(1) Update username");
+//	System.out.println("(2) Update password");
+//	System.out.println("(3) Update name");
+//	System.out.println("(4) Exit");
+//	String option = scanner.nextLine();
+//	
+//	return Integer.parseInt(option);
+//}
 }

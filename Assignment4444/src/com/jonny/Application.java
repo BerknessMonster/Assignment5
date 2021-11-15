@@ -13,6 +13,6 @@ public class Application {
 		UserService userService = new UserService();
 		/////////// INSTANTIATIONS///////////////////
 		User[] users = populateUsers.populateUsersFromFile();		
-		userService.inputsAndComparingUserByUsernameAndPassword(users, false);
+		userService.inputsAndComparingUserByUsernameAndPassword(users);
 	}
 }
