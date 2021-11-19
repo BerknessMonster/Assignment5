@@ -13,6 +13,9 @@ public class Application {
 		UserService userService = new UserService();
 		/////////// INSTANTIATIONS///////////////////
 		User[] users = populateUsers.populateUsersFromFile();		
-		userService.inputsAndComparingUserByUsernameAndPassword(users);
+		User loggedInUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
+		Integer option =  userService.loggedInUserPromptOptions(loggedInUser);
+		System.out.println(option);
+		
 	}
 }

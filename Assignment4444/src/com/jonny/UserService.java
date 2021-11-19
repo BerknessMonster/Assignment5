@@ -7,7 +7,7 @@ public class UserService<user> {
 
 
 	public User inputsAndComparingUserByUsernameAndPassword(User[] users) {
-		boolean loggedInUser = false;
+		boolean loggedInUserBoolean = false;
 		String userInputEmail = null;
 		String userInputPassword = null;
 		for (int i = 0; i < 6; i++) {
@@ -16,16 +16,16 @@ public class UserService<user> {
 				System.exit(i);
 			} else {
 				System.out.println("Enter your email");
-				userInputEmail = scanner.next();
+				userInputEmail = scanner.nextLine();
 				System.out.println("Enter your password");
-				userInputPassword = scanner.next();
+				userInputPassword = scanner.nextLine();
 			}
 			for (User user : users) {
 				if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword()))
 					System.out.println("Welcome " + user.getName());
 				return user;
 			}
-			if (loggedInUser == false) {
+			if (loggedInUserBoolean == false) {
 				System.out.println("Please enter a valid username and password");
 			}
 
@@ -35,23 +35,23 @@ public class UserService<user> {
 	}
 	
 	
-		private void updateUsername (user loggedInUser) {
+		private void updateUsername (User loggedInUser) {
 		System.out.println("What would you like your new username to be?");
 		String username = scanner.nextLine();
 		((User) loggedInUser).setUsername(username);
 	}
 		
-		private void updatePassword (user loggedInUser) {
+		private void updatePassword (User loggedInUser) {
 		System.out.println("What would you like your new password to be?");
 		String password = scanner.nextLine();
 		((User) loggedInUser).setPassword(password);
 	}
-		private void updateName (user loggedInUser) {
+		private void updateName (User loggedInUser) {
 		System.out.println("What would you like your new name to be?");
 		String name = scanner.nextLine();
 		((User) loggedInUser).setName(name);
 	}
-		private int loggedInUserPromptOptions(User loggedInUser) {
+		public int loggedInUserPromptOptions(User loggedInUser) {
 			System.out.println("----------");
 			System.out.println("Please choose from the following options:");
 			if (loggedInUser instanceof SuperUser) {
@@ -61,12 +61,12 @@ public class UserService<user> {
 			System.out.println("(2) Update password");
 			System.out.println("(3) Update name");
 			System.out.println("(4) Exit");
-			String option = scanner.nextLine();
+			String option = scanner.nextLine(); 
+			if (option.trim().equals("")) {
+				throw new RuntimeException("no way dude");
+			}
 			return Integer.parseInt(option);
 			
 		}
-	}
-      
 		
-
-
+	}
