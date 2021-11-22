@@ -10,12 +10,14 @@ public class Application {
 
 	public static void main(String[] args) throws IOException {
 		PopulateUsers populateUsers = new PopulateUsers();
+		boolean loggedInUserBoolean = false;
 		UserService userService = new UserService();
 		/////////// INSTANTIATIONS///////////////////
 		User[] users = populateUsers.populateUsersFromFile();		
 		User loggedInUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
-		Integer option =  userService.loggedInUserPromptOptions(loggedInUser);
-		System.out.println(option);
+		Integer option =  userService.loggedInUserPromptOptions(loggedInUser,loggedInUserBoolean);
+		
+		
 		
 	}
 }
