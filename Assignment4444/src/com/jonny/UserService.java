@@ -42,13 +42,14 @@ public class UserService<user> {
 		String username = scanner.nextLine();
 		((User) loggedInUser).setUsername(username);
 	}
-	private void chooseAnotherUserToLoginAs(User loggedInUser) {
-		System.out.println("Who would you to login as?");
-		String username = scanner.nextLine();
+	private String chooseAnotherUserToLoginAs(User loggedInUser) {
+		System.out.println("Who would you to login as? (Type in a valid username)");
+		String userLoginNew = scanner.nextLine();
+		return userLoginNew;
 	}
 
 	private void updatePassword(User loggedInUser) {
-		System.out.println("What would you like your new password to be?");
+		System.out.println("What would you like your new password to be? ");
 		String password = scanner.nextLine();
 		((User) loggedInUser).setPassword(password);
 	}
@@ -57,9 +58,10 @@ public class UserService<user> {
 		System.out.println("What would you like your new name to be?");
 		String name = scanner.nextLine();
 		((User) loggedInUser).setName(name);
+		System.out.println(name);
 	}
 
-	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean) {
+	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean, User superUser) {
 		String option = "";
 		if (loggedInUserBoolean = true) {
 			System.out.println("----------");
@@ -74,8 +76,6 @@ public class UserService<user> {
 			option = scanner.nextLine();
 			if (option.trim().equals("")) {
 				throw new RuntimeException("throwing runtime excpetion");
-			} else if (Integer.parseInt(option) == 0) {
-
 			} else if (Integer.parseInt(option) == 1) {
 				updateUsername(loggedInUser);
 			} else if (Integer.parseInt(option) == 2) {
@@ -84,6 +84,7 @@ public class UserService<user> {
 				updateName(loggedInUser);
 			} else if (Integer.parseInt(option) == 4) {
 				System.out.println("See you next time");
+				
 			}
 		}
 		return Integer.parseInt(option);
