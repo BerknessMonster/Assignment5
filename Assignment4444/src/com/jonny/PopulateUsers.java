@@ -25,7 +25,7 @@ public class PopulateUsers {
 				users[i] = user;
 				i++;
 			}
-	//		User currentUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
+
 
 		} catch (FileNotFoundException e) {
 			System.out.println("file not read");
@@ -34,12 +34,6 @@ public class PopulateUsers {
 			if (bufferedReader != null)
 				bufferedReader.close();
 		}
-		// for (User x : users) {
-		// System.out.println(x);
-		// }
 		return users;
 	}
-
-/////////////////////////DON'T TOUCH BELOW///////////////////////////////////////////
-
 }
