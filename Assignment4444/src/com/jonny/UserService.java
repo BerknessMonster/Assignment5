@@ -24,11 +24,11 @@ public class UserService<user> {
 				userInputPassword = scanner.nextLine();
 			}
 			for (User user : users) {
-				if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword()))
+				if (userInputEmail.equals(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
 					System.out.println("Welcome " + user.getName());
 				loggedInUserBoolean = true;
-				user = currentUser;
-				return currentUser;
+				
+				return user;}
 
 			}
 			if (loggedInUserBoolean == false) {
@@ -47,11 +47,20 @@ public class UserService<user> {
 		System.out.println(username);
 	}
 
-	private String chooseAnotherUserToLoginAs(User loggedInUser) {
+	private void chooseAnotherUserToLoginAs(User loggedInUser, User[] users) {
 		System.out.println("Who would you to login as? (Type in a valid username)");
-		String userLoginNew = scanner.nextLine();
-		System.out.println(userLoginNew);
-		return userLoginNew;
+		String userEntered = scanner.nextLine();
+		for (User user : users) {
+		if 	(userEntered.equalsIgnoreCase(user.getUsername())) {
+				System.out.println("welcome " + user.getName());
+				
+				loggedInUser = user;
+				loggedInUserPromptOptions(loggedInUser, true, users);
+			}
+		
+		}
+		System.out.println("unable to find user, please check your input and try again");
+		
 	}
 
 	private void updatePassword(User loggedInUser) {
@@ -64,27 +73,33 @@ public class UserService<user> {
 	private void updateName(User loggedInUser) {
 		System.out.println("What would you like your new name to be?");
 		String name = scanner.nextLine();
-		((User) loggedInUser).setName(name);
-		System.out.println(name);
+		
 	}
 
-	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean) {
+	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean, User[] users) {
 		String option = "";
 		if (loggedInUserBoolean = true) {
 			System.out.println("----------");
 			System.out.println("Please choose from the following options:");
-			if (loggedInUser instanceof SuperUser) {
+			if (loggedInUser.getRole().equals("super_user")) {
 				System.out.println("(0) Log in as another user ");
+				System.out.println("(1) Update username");
+				System.out.println("(2) Update password");
+				System.out.println("(3) Update name");
+				System.out.println("(4) Exit");
+				option = scanner.nextLine();
+//				chooseAnotherUserToLoginAs(loggedInUser);
+			} else {
+				System.out.println("(1) Update username");
+				System.out.println("(2) Update password");
+				System.out.println("(3) Update name");
+				System.out.println("(4) Exit");
+				option = scanner.nextLine();
 			}
-			System.out.println("(1) Update username");
-			System.out.println("(2) Update password");
-			System.out.println("(3) Update name");
-			System.out.println("(4) Exit");
-			option = scanner.nextLine();
 			if (option.trim().equals("")) {
 				throw new RuntimeException("throwing runtime excpetion");
 			} else if (Integer.parseInt(option) == 0) {
-				chooseAnotherUserToLoginAs(loggedInUser);
+				chooseAnotherUserToLoginAs(loggedInUser, users);
 			} else if (Integer.parseInt(option) == 1) {
 				updateUsername(loggedInUser);
 			} else if (Integer.parseInt(option) == 2) {
@@ -93,6 +108,7 @@ public class UserService<user> {
 				updateName(loggedInUser);
 			} else if (Integer.parseInt(option) == 4) {
 				System.out.println("See you next time");
+				System.exit(0);
 
 			}
 		}

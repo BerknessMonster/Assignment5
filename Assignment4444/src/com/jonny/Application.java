@@ -13,11 +13,9 @@ public class Application {
 		boolean loggedInUserBoolean = false;
 		UserService userService = new UserService();
 		/////////// INSTANTIATIONS///////////////////
-		User[] users = populateUsers.populateUsersFromFile();		
+		User[] users = populateUsers.populateUsersFromFile();
 		User loggedInUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
-		Integer option =  userService.loggedInUserPromptOptions(loggedInUser,loggedInUserBoolean);
-		
-		
-		
+		Integer option = userService.loggedInUserPromptOptions(loggedInUser, loggedInUserBoolean, users);
+
 	}
 }
