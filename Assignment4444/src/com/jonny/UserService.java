@@ -26,9 +26,10 @@ public class UserService<user> {
 			for (User user : users) {
 				if (userInputEmail.equals(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
 					System.out.println("Welcome " + user.getName());
-				loggedInUserBoolean = true;
-				
-				return user;}
+					loggedInUserBoolean = true;
+
+					return user;
+				}
 
 			}
 			if (loggedInUserBoolean == false) {
@@ -43,7 +44,7 @@ public class UserService<user> {
 	private void updateUsername(User loggedInUser) {
 		System.out.println("What would you like your new username to be?");
 		String username = scanner.nextLine();
-		((User) loggedInUser).setUsername(username);
+		loggedInUser.setUsername(username);
 		System.out.println(username);
 	}
 
@@ -51,29 +52,30 @@ public class UserService<user> {
 		System.out.println("Who would you to login as? (Type in a valid username)");
 		String userEntered = scanner.nextLine();
 		for (User user : users) {
-		if 	(userEntered.equalsIgnoreCase(user.getUsername())) {
-				System.out.println("welcome " + user.getName());
-				
+			if (userEntered.equalsIgnoreCase(user.getUsername())) {
+				System.out.println("Welcome " + user.getName());
+
 				loggedInUser = user;
 				loggedInUserPromptOptions(loggedInUser, true, users);
 			}
-		
+
+
 		}
-		System.out.println("unable to find user, please check your input and try again");
-		
+
 	}
 
 	private void updatePassword(User loggedInUser) {
 		System.out.println("What would you like your new password to be? ");
 		String password = scanner.nextLine();
-		((User) loggedInUser).setPassword(password);
+		loggedInUser.setPassword(password);
 		System.out.println(password);
 	}
 
 	private void updateName(User loggedInUser) {
 		System.out.println("What would you like your new name to be?");
 		String name = scanner.nextLine();
-		
+		loggedInUser.setName(name);
+		System.out.println(name);
 	}
 
 	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean, User[] users) {
@@ -88,7 +90,6 @@ public class UserService<user> {
 				System.out.println("(3) Update name");
 				System.out.println("(4) Exit");
 				option = scanner.nextLine();
-//				chooseAnotherUserToLoginAs(loggedInUser);
 			} else {
 				System.out.println("(1) Update username");
 				System.out.println("(2) Update password");
@@ -114,5 +115,10 @@ public class UserService<user> {
 		}
 		return Integer.parseInt(option);
 
+	}
+
+	public String getCurrentUser(User user) {
+	
+		return user.getUsername() + ", " + user.getPassword() + ", " + user.getName() + ", " + user.getRole() + "\n ";
 	}
 }

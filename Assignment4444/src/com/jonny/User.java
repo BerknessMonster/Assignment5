@@ -35,4 +35,9 @@ public String getRole() {
 public void setRole(String role) {
 	this.role = role;
 }
+
+public void compareTo(User user) {
+	// TODO Auto-generated method stub
+	
+}
 }

@@ -8,7 +8,7 @@ import java.io.IOException;
 public class PopulateUsers {
 	public User[] populateUsersFromFile() throws IOException {
 		User[] users = new User[20];
-		UserService userService = new UserService();
+	//	UserService userService = new UserService();
 		String lineBeingRead = "";
 		BufferedReader bufferedReader = null;
 		try {
