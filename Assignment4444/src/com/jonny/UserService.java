@@ -1,13 +1,11 @@
 package com.jonny;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.Arrays;
+
 import java.util.Scanner;
 
-public class UserService<user> {
+public class UserService {
 	private Scanner scanner = new Scanner(System.in);
-	User currentUser = new User();
+	//User currentUser = new User();
 
 	public User inputsAndComparingUserByUsernameAndPassword(User[] users) {
 		boolean loggedInUserBoolean = false;

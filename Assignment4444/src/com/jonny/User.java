@@ -1,43 +1,70 @@
 package com.jonny;
 
-public class User {
-private String username;
-private String password;
-private String name;
-private String role;
+import java.io.Serializable;
 
-@Override
-public String toString() {
-	return "User [username=" + username + ", password=" + password + ", name=" + name + ", role=" + role + "]";
-}
+public class User implements Serializable, Comparable<User>{
+	private String username;
+	private String password;
+	private String name;
+	protected String role;
+	public static final long serialVersionUID = 1L;
+	public User(String[] usersSplit) {
+        this.username = usersSplit[0];
+        this.password = usersSplit[1];
+        this.name = usersSplit[2];
+    }
+	public User(String username, String password, String name, String role) {
+		this.username = username.trim();
+		this.password = password.trim();
+		this.name = name.trim();
+		this.role = role.trim();
+	}
 
-public String getUsername() {
-	return username;
-}
-public void setUsername(String username) {
-	this.username = username;
-}
-public String getPassword() {
-	return password;
-}
-public void setPassword(String password) {
-	this.password = password;
-}
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-public String getRole() {
-	return role;
-}
-public void setRole(String role) {
-	this.role = role;
-}
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", name=" + name + ", role=" + role + "]";
+	}
 
-public void compareTo(User user) {
-	// TODO Auto-generated method stub
-	
-}
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public int compareTo(User that) {
+		if (this.role.equals(that.role)) {
+			return -1;
+		} else if (this.username.equals(that.username)) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
 }
