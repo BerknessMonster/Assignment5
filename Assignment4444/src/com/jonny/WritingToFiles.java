@@ -16,9 +16,9 @@ public class WritingToFiles {
 
 				writer.write(userService.getCurrentUser(user));
 				if (user.getRole().equals("super_user")) {
-					System.out.println(user);
+
 				} else {
-					System.out.println(user);
+
 				}
 			}
 		} finally {

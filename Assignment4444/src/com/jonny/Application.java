@@ -13,8 +13,9 @@ public class Application {
 		/////////// INSTANTIATIONS///////////////////
 		User[] users = populateUsers.populateUsersFromFile();
 		User loggedInUser = userService.inputsAndComparingUserByUsernameAndPassword(users);
-		Integer option = userService.loggedInUserPromptOptions(loggedInUser, loggedInUserBoolean, users);
+		Integer option = userService.loggedInUserPromptOptions(loggedInUser, loggedInUserBoolean, users, userService);
 		writingToFiles.writeToFile(users, userService);
+		
 
 	}
 }

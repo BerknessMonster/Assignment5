@@ -16,10 +16,16 @@ public class PopulateUsers {
 			while ((lineBeingRead = bufferedReader.readLine()) != null) {
 				String[] usersSplit = new String[4];
 				usersSplit = lineBeingRead.split(",");
+				try {
 				User user = new User(usersSplit[0], usersSplit[1], usersSplit[2], usersSplit[3]);
 				users[i] = user;
 				i++;
+				}
+				catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println(usersSplit[0].toString());	
+				}
 			}
+			
 
 		} catch (FileNotFoundException e) {
 			System.out.println("file not read");

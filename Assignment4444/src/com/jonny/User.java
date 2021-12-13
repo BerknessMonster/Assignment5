@@ -57,14 +57,17 @@ public class User implements Serializable, Comparable<User>{
 		this.role = role;
 	}
 
+
+	@Override
 	public int compareTo(User that) {
-		if (this.role.equals(that.role)) {
-			return -1;
-		} else if (this.username.equals(that.username)) {
-			return 0;
-		} else {
-			return 1;
+		if (this.role.compareTo(that.role) ==0) {
+			return this.username.compareTo(that.username);
+		}else {
+			return that.role.compareTo(this.role);
+			
 		}
 	}
+
+
 
 }

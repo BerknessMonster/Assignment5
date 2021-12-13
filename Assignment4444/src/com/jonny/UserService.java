@@ -1,11 +1,13 @@
 package com.jonny;
 
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserService {
 	private Scanner scanner = new Scanner(System.in);
-	//User currentUser = new User();
+	WritingToFiles writingToFiles = new WritingToFiles();
 
 	public User inputsAndComparingUserByUsernameAndPassword(User[] users) {
 		boolean loggedInUserBoolean = false;
@@ -22,7 +24,7 @@ public class UserService {
 				userInputPassword = scanner.nextLine();
 			}
 			for (User user : users) {
-				if (userInputEmail.equals(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
+				if (userInputEmail.equalsIgnoreCase(user.getUsername()) && userInputPassword.equals(user.getPassword())) {
 					System.out.println("Welcome " + user.getName());
 					loggedInUserBoolean = true;
 
@@ -39,14 +41,14 @@ public class UserService {
 
 	}
 
-	private void updateUsername(User loggedInUser) {
+	private void updateUsername(User loggedInUser, User[] users, UserService userService) throws IOException {
 		System.out.println("What would you like your new username to be?");
 		String username = scanner.nextLine();
-		loggedInUser.setUsername(username);
-		System.out.println(username);
+		loggedInUser.setUsername(username.toLowerCase());
+		loggedInUserPromptOptions(loggedInUser, true, users, userService);
 	}
 
-	private void chooseAnotherUserToLoginAs(User loggedInUser, User[] users) {
+	private void chooseAnotherUserToLoginAs(User loggedInUser, User[] users, UserService userService) throws IOException {
 		System.out.println("Who would you to login as? (Type in a valid username)");
 		String userEntered = scanner.nextLine();
 		for (User user : users) {
@@ -54,7 +56,7 @@ public class UserService {
 				System.out.println("Welcome " + user.getName());
 
 				loggedInUser = user;
-				loggedInUserPromptOptions(loggedInUser, true, users);
+				loggedInUserPromptOptions(loggedInUser, true, users, userService);
 			}
 
 
@@ -76,7 +78,7 @@ public class UserService {
 		System.out.println(name);
 	}
 
-	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean, User[] users) {
+	public int loggedInUserPromptOptions(User loggedInUser, boolean loggedInUserBoolean, User[] users, UserService userService) throws IOException {
 		String option = "";
 		if (loggedInUserBoolean = true) {
 			System.out.println("----------");
@@ -98,14 +100,16 @@ public class UserService {
 			if (option.trim().equals("")) {
 				throw new RuntimeException("throwing runtime excpetion");
 			} else if (Integer.parseInt(option) == 0) {
-				chooseAnotherUserToLoginAs(loggedInUser, users);
+				chooseAnotherUserToLoginAs(loggedInUser, users, userService);
 			} else if (Integer.parseInt(option) == 1) {
-				updateUsername(loggedInUser);
+				updateUsername(loggedInUser, users, userService);
 			} else if (Integer.parseInt(option) == 2) {
 				updatePassword(loggedInUser);
 			} else if (Integer.parseInt(option) == 3) {
 				updateName(loggedInUser);
 			} else if (Integer.parseInt(option) == 4) {
+				Arrays.sort(users);
+				writingToFiles.writeToFile(users, userService);
 				System.out.println("See you next time");
 				System.exit(0);
 
